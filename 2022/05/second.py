@@ -6,10 +6,12 @@ how_many_columns = ceil(len(first_line) / 4)
 valid_columns = [x for x in range(1, how_many_columns * 4 - 2, 4)]
 stacks = [[] for _ in range(0, how_many_columns)]
 
+
 def formatter(str):
     for [i, column] in enumerate(valid_columns):
         if str[column] != " ":
             stacks[i].append(str[column])
+
 
 formatter(first_line)
 
@@ -32,7 +34,7 @@ while True:
         to_col = int(to_col) - 1
 
         aux = stacks[from_col][0:how_many_times]
-        
+
         aux.extend(stacks[to_col])
 
         stacks[to_col] = aux

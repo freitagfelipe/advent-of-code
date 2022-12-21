@@ -15,6 +15,7 @@ while True:
     except EOFError:
         break
 
+
 def calculate_solution(first_solution: int, second_solution: int, problem: str) -> int:
     [_, op, _] = problem.split(" ")
 
@@ -26,7 +27,7 @@ def calculate_solution(first_solution: int, second_solution: int, problem: str) 
         return first_solution - second_solution
 
     return first_solution // second_solution
-    
+
 
 def get_solution(key: str):
     if monkey_dict[key]["solution"]:
@@ -40,7 +41,7 @@ def get_solution(key: str):
         monkey_dict[key]["solution"] = calculate_solution(first_solution, second_solution, monkey_dict[key]["problem"])
 
 
-while monkey_dict["root"]["solution"] == None:
+while monkey_dict["root"]["solution"] is None:
     for key in monkey_dict:
         get_solution(key)
 

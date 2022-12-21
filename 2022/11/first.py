@@ -34,6 +34,7 @@ while True:
 
         break
 
+
 def process_operation(operation: str, curr_worry: int) -> int:
     operation = operation.replace("old", str(curr_worry)).split(" ")
 
