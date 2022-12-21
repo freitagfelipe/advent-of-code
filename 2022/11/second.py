@@ -1,5 +1,6 @@
 monkeys = []
 curr_dict = {}
+module = 1
 
 while True:
     try:
@@ -16,9 +17,11 @@ while True:
 
             curr_dict["operation"] = operation
         elif entry.startswith("Test"):
-            divisible_by = entry.split(" ")[3]
+            divisible_by = int(entry.split(" ")[3])
 
-            curr_dict["test"] = int(divisible_by)
+            curr_dict["test"] = divisible_by
+
+            module *= divisible_by
         elif entry.startswith("If"):
             entry = entry.split(" ")
 
@@ -44,7 +47,7 @@ def process_operation(operation: str, curr_worry: int) -> int:
     else:
         value = int(operation[0]) * int(operation[2])
 
-    return value // 3
+    return value % module
 
 
 def process_test(value: int, test: int) -> bool:
@@ -56,7 +59,7 @@ def process_test(value: int, test: int) -> bool:
 
 answer = [0 for _ in range(0, len(monkeys))]
 
-for i in range(0, len(monkeys) * 20):
+for i in range(0, len(monkeys) * 10000):
     j = i % len(monkeys)
 
     for item in monkeys[j]["items"]:
