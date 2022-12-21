@@ -6,22 +6,22 @@ using namespace std;
 int letters[53];
 int curr_letters[53];
 
+int value(char ch) {
+    if (ch >= 'a') {
+        return ch - 'a';
+    }
+
+    return ch - 'A' + 26;
+}
+
 void iterate(string &a) {
     for (int i {}; i < a.size(); ++i) {
         char ch {a[i]};
-        int shift {ch >= 'a' ? 1 : 27};
-        int pos {};
 
-        if (ch >= 'a') {
-            pos = ch - 'a';
-        } else {
-            pos = ch - 'A';
-        }
-
-        curr_letters[pos + shift] = 1;
+        curr_letters[value(ch)] = 1;
     }
 
-    for (int i {1}; i < 53; ++i) {
+    for (int i {}; i < 53; ++i) {
         letters[i] += curr_letters[i];
     }
 
@@ -38,9 +38,9 @@ int main() {
         iterate(second_elf);
         iterate(third_elf);
 
-        for (int i {1}; i < 53; ++i) {
+        for (int i {}; i < 53; ++i) {
             if (letters[i] == 3) {
-                ans += i;
+                ans += i + 1;
             }
 
             letters[i] = 0;

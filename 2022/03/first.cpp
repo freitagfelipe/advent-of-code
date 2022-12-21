@@ -3,6 +3,14 @@
 
 using namespace std;
 
+int value(char ch) {
+    if (ch >= 'a') {
+        return ch - 'a';
+    }
+
+    return ch - 'A' + 26;
+}
+
 int main() {
     string input;
     bitset<53> letters;
@@ -12,33 +20,17 @@ int main() {
     while (cin >> input) {
         for (int i {}; i < input.size() / 2; ++i) {
             char ch {input[i]};
-            int shift {ch >= 'a' ? 1 : 27};
-            int pos {};
 
-            if (ch >= 'a') {
-                pos = ch - 'a';
-            } else {
-                pos = ch - 'A';
-            }
-
-            letters[pos + shift] = 1;
+            letters[value(ch)] = 1;
         }
 
         for (int i {int(input.size() / 2)}; i < input.size(); ++i) {
             char ch {input[i]};
-            int shift {ch >= 'a' ? 1 : 27};
-            int pos {};
 
-            if (ch >= 'a') {
-                pos = ch - 'a';
-            } else {
-                pos = ch - 'A';
-            }
+            int val {value(ch)};
 
-            pos += shift;
-
-            if (letters[pos]) {
-                ans += pos;
+            if (letters[val]) {
+                ans += val + 1;
                 
                 break;
             }
